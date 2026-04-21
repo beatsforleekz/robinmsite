@@ -5,36 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robin M</title>
   <meta name="description" content="Robin Michelangelo aka Robin M, London based producer / DJ and founder of Ulu Records." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #000000;
-      --panel: #000000;
-      --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.88);
-      --line: rgba(255, 255, 255, 0.2);
-      --line-soft: rgba(255, 255, 255, 0.12);
-      --header-height: 93px;
-      --content-width: 946px;
-      --hero-width: 400px;
-      --hero-ratio: 0.7197553517;
+      --white: #ffffff;
+      --light: #e6e6e6;
+      --grey: #b9b9b9;
+      --mid: #8a8a8a;
+      --border: rgba(255, 255, 255, 0.16);
+      --f-head: 'Barlow Condensed', sans-serif;
+      --f-body: 'Barlow', sans-serif;
+      --gutter: clamp(1.25rem, 4vw, 3.75rem);
+      --max: 1400px;
     }
 
-    * {
-      box-sizing: border-box;
+    html {
+      font-size: 16px;
+      background: #000;
     }
 
-    html,
     body {
-      margin: 0;
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      background: #000;
+      color: var(--white);
+      font-family: var(--f-body);
+      font-weight: 300;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    body {
       overflow-x: hidden;
     }
 
@@ -48,320 +48,405 @@
       max-width: 100%;
     }
 
-    .page {
-      width: 100%;
-      background: var(--bg);
+    .landing {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      isolation: isolate;
+      background: #000;
+    }
+
+    .landing::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.58) 0%, rgba(0,0,0,.38) 28%, rgba(0,0,0,.52) 65%, rgba(0,0,0,.74) 100%),
+        radial-gradient(circle at 50% 40%, rgba(0,0,0,.04) 0%, rgba(0,0,0,.45) 72%, rgba(0,0,0,.76) 100%),
+        url('images/RobinM-AmorosoFilms021.JPG') 50% 30% / cover no-repeat;
+      z-index: -2;
+      transform: scale(1.02);
+    }
+
+    .landing::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.08) 46%, rgba(0,0,0,.34) 100%);
+      z-index: -1;
+      pointer-events: none;
     }
 
     .shell {
-      width: min(100%, calc(var(--content-width) + 32px));
+      width: 100%;
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 var(--gutter);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .header {
-      min-height: var(--header-height);
+    .topbar {
+      width: 100%;
+      padding: clamp(1.15rem, 3vh, 1.85rem) 0;
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 10px 0 14px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 1rem;
     }
 
     .brand {
       display: inline-flex;
-      align-items: flex-end;
-      min-width: 0;
+      align-items: center;
+      width: clamp(146px, 18vw, 264px);
+      flex-shrink: 0;
     }
 
-    .brand-mark {
-      width: clamp(122px, 16vw, 250px);
+    .brand img {
+      width: 100%;
       height: auto;
       object-fit: contain;
       filter: invert(1);
     }
 
+    .top-actions {
+      display: none;
+    }
+
+    .signup-link {
+      font-family: var(--f-head);
+      font-size: .82rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .35rem;
+      transition: color .2s ease, border-color .2s ease;
+      white-space: nowrap;
+    }
+
+    .signup-link:hover,
+    .signup-link:focus-visible {
+      color: var(--grey);
+      border-color: rgba(255,255,255,.42);
+    }
+
     .socials {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
+      gap: clamp(.8rem, 1.4vw, 1.2rem);
+      list-style: none;
       flex-wrap: wrap;
-      padding-bottom: 3px;
+      justify-content: flex-end;
     }
 
-    .social {
-      width: 35px;
-      height: 35px;
+    .socials a {
+      width: 22px;
+      height: 22px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--text);
-      opacity: 0.96;
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      -webkit-tap-highlight-color: transparent;
+      color: var(--white);
+      opacity: .82;
+      transition: opacity .2s ease, transform .2s ease;
     }
 
-    .social:hover,
-    .social:focus-visible {
-      opacity: 0.68;
+    .socials a:hover,
+    .socials a:focus-visible {
+      opacity: 1;
       transform: translateY(-1px);
     }
 
-    .social svg,
-    .social img {
+    .socials svg,
+    .socials img {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .social svg {
+    .socials svg {
       fill: currentColor;
     }
 
-    .social img {
+    .socials img {
       object-fit: contain;
     }
 
-    .social-ulu {
-      width: 36px;
-      height: 36px;
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: clamp(3rem, 8vh, 6rem) 0 clamp(9rem, 22vh, 12rem);
     }
 
-    .social-bp {
-      width: 39px;
-      height: 45px;
-    }
-
-    .hero-wrap {
-      width: min(100%, var(--hero-width));
-      margin: 24px auto 0;
-      position: relative;
-      background: var(--panel);
-    }
-
-    .hero-stack {
+    .hero-card {
+      width: min(100%, 540px);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      text-align: center;
+      gap: 0;
     }
 
-    .hero {
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
       position: relative;
+      z-index: 3;
       width: 100%;
-      aspect-ratio: 940 / 1306;
-      min-height: 0;
-      background: #000000;
-      overflow: hidden;
-      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.94) 74%, rgba(0, 0, 0, 0.42) 88%, rgba(0, 0, 0, 0) 100%);
-      mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.94) 74%, rgba(0, 0, 0, 0.42) 88%, rgba(0, 0, 0, 0) 100%);
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 54%, rgba(0, 0, 0, 0.08) 72%, rgba(0, 0, 0, 0.2) 86%, rgba(0, 0, 0, 0.34) 100%);
-      pointer-events: none;
+    .hero-nav {display:none}
+
+    .hero-signup {
+      font-family: var(--f-head);
+      font-size: 1.02rem;
+      font-weight: 500;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .45rem;
+      transition: color .2s ease, border-color .2s ease;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      box-shadow: inset 0 0 42px rgba(0, 0, 0, 0.18);
-      pointer-events: none;
-      z-index: 1;
+    .hero-signup:hover,
+    .hero-signup:focus-visible {
+      color: var(--grey);
+      border-color: rgba(255,255,255,.44);
     }
 
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: saturate(0.98) brightness(0.96);
-    }
-
-    .signup {
+    .hero-socials a {
+      width: 26px;
+      height: 26px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 81px;
-      min-height: 41px;
-      padding: 0 16px;
-      border: 1px solid var(--line);
-      color: var(--text);
-      background: rgba(0, 0, 0, 0.32);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      line-height: 1;
-      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
-      white-space: nowrap;
-      touch-action: manipulation;
+      color: var(--white);
+      opacity: .86;
+      transition: opacity .2s ease, transform .2s ease;
+      position: relative;
+      z-index: 3;
     }
 
-    .signup:hover,
-    .signup:focus-visible {
-      background: rgba(255, 255, 255, 0.14);
-      border-color: rgba(255, 255, 255, 0.48);
-      color: #ffffff;
+    .hero-socials a:hover,
+    .hero-socials a:focus-visible {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .hero-socials svg,
+    .hero-socials img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-socials svg {
+      fill: currentColor;
+    }
+
+    .hero-socials img {
+      object-fit: contain;
+    }
+
+    .hero-socials .hero-ulu-link {
+      width: 28px;
+      height: 28px;
+    }
+
+    .hero-socials .hero-ulu-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 1;
     }
 
     .footer {
-      min-height: 52px;
-      display: flex;
+      width: 100%;
+      padding: clamp(1.15rem, 2.8vh, 1.8rem) 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: center;
-      padding: 8px 0 13px;
-      border-top: 1px solid transparent;
+      gap: 1.5rem;
     }
 
-    .footer p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.35;
-      text-align: center;
+    .footer-left{
+      justify-self:start;
     }
 
-    @media (max-width: 980px) {
-      .shell {
-        width: 100%;
-      }
-
-      .header {
-        align-items: center;
-        padding-top: 14px;
-        padding-bottom: 14px;
-      }
-
-      .brand-mark {
-        width: clamp(116px, 18vw, 210px);
-      }
+    .footer-center{
+      justify-self:center;
     }
 
-    @media (max-width: 700px) {
-      .header {
-        flex-direction: column;
+    .footer-right{
+      justify-self:end;
+    }
+
+    .footer-copy {
+      font-family: var(--f-head);
+      font-size: .68rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-align: left;
+      line-height: 1;
+    }
+
+    .footer-signup{
+      position:static;
+      transform:none;
+      z-index:4;
+      line-height:1;
+      flex-shrink:0;
+    }
+
+    .footer-socials{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:clamp(1rem,1.6vw,1.35rem);
+      list-style:none;
+      flex-wrap:nowrap;
+      flex-shrink:0;
+    }
+
+    @media (max-width: 900px) {
+      .landing::before {
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.42) 28%, rgba(0,0,0,.56) 68%, rgba(0,0,0,.8) 100%),
+          radial-gradient(circle at 50% 34%, rgba(0,0,0,.04) 0%, rgba(0,0,0,.5) 72%, rgba(0,0,0,.82) 100%),
+          url('images/RobinM-AmorosoFilms021.JPG') 50% 30% / cover no-repeat;
+      }
+
+      .topbar {
         align-items: flex-start;
-        gap: 14px;
       }
 
-      .socials {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 8px;
+      .brand {
+        width: clamp(140px, 26vw, 214px);
       }
 
-      .hero-wrap {
-        width: min(100%, 340px);
-        margin-top: 18px;
+      .hero {
+        align-items: flex-end;
+        padding-bottom: clamp(8rem, 19vh, 10rem);
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 640px) {
       .shell {
-        padding: 0 10px;
+        padding: 0 clamp(1rem, 5vw, 1.35rem);
       }
 
-      .header {
-        min-height: auto;
-        padding-top: 12px;
-        padding-bottom: 12px;
+      .topbar {
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: .75rem;
       }
 
-      .brand-mark {
-        width: 112px;
+      .hero {
+        justify-content: center;
+        padding: clamp(2rem, 8vh, 4rem) 0 clamp(8rem, 18vh, 9rem);
       }
 
-      .social {
-        width: 31px;
-        height: 31px;
+      .hero-card {
+        width: 100%;
+        gap: 0;
       }
 
-      .social-ulu {
-        width: 32px;
-        height: 32px;
+      .hero-signup {
+        font-size: .92rem;
       }
 
-      .social-bp {
-        width: 34px;
-        height: 38px;
+      .footer-socials a {
+        width: 24px;
+        height: 24px;
       }
 
-      .hero-wrap {
-        width: min(100%, 280px);
+      .footer-socials .hero-ulu-link {
+        width: 26px;
+        height: 26px;
       }
 
-      .signup {
-        min-width: 92px;
-        min-height: 42px;
-        padding: 0 14px;
-        font-size: 11px;
+      .footer {
+        padding: 1rem 0 1.2rem;
+        gap: 1rem;
       }
 
-      .footer p {
-        font-size: 13px;
+      .footer-copy {
+        font-size: .62rem;
+        letter-spacing: .2em;
+      }
+
+      .footer-socials{
+        gap:.9rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+  <div class="landing">
     <div class="shell">
-      <header class="header">
+      <header class="topbar">
         <a class="brand" href="/" aria-label="Robin M home">
-          <img class="brand-mark" src="images/Robin_M.png" alt="Robin M" />
+          <img src="images/Robin_M.png" alt="Robin M" />
         </a>
-
-        <nav class="socials" aria-label="Social links">
-          <a class="social social-ulu" href="https://ulurecords.com" aria-label="Ulu Records" target="_self">
-            <img src="images/ululogo.png" alt="" />
-          </a>
-          <a class="social social-bp" href="https://www.beatport.com/artist/robin-m/731330" aria-label="Beatport" target="_self">
-            <img src="images/beatport.png" alt="" />
-          </a>
-          <a class="social" href="https://soundcloud.com/robinmmusic" aria-label="SoundCloud" target="_self">
-            <img src="images/soundcloud-white-icon.png" alt="" />
-          </a>
-          <a class="social" href="https://open.spotify.com/artist/2XOzTjiQuB1TeW6JQKU3j7?si=Yd1GdSl7R7GdSPtsm3NVcQ" aria-label="Spotify" target="_self">
-            <svg viewBox="0 0 35 35" aria-hidden="true">
-              <path d="M17.5 2.5c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zm6.8 21.6c-.3.4-.8.5-1.2.3-3.4-2.1-7.7-2.6-12.8-1.4-.4.1-.9-.2-1-.7-.1-.4.2-.9.6-1 5.6-1.3 10.4-.8 14.2 1.6.4.2.5.8.2 1.2zm1.7-3.8c-.4.5-1 .6-1.5.4-3.8-2.4-9.5-3.1-14-1.6-.6.2-1.2-.1-1.4-.7-.2-.6.1-1.2.7-1.4 5.1-1.6 11.4-.9 15.9 1.9.5.3.7 1 .3 1.4zm.1-4c-4.5-2.7-11.9-3-16.2-1.7-.7.2-1.4-.2-1.6-.8-.2-.7.2-1.4.8-1.6 5-.5 13.1-.2 18.4 2.3.6.4.8 1.1.5 1.8-.4.5-1.2.7-1.9 0z"></path>
-            </svg>
-          </a>
-          <a class="social" href="https://www.youtube.com/channel/UC9-haEDKntnUyEoW09wsRng" aria-label="YouTube" target="_self">
-            <svg viewBox="0 0 35 35" aria-hidden="true">
-              <path d="M31.4 10.8c-.3-1.5-1.5-2.8-3-3.1C25.7 7 17.5 7 17.5 7s-8.2 0-10.9.7c-1.5.3-2.7 1.6-3 3.1C3 13.5 3 17.5 3 17.5s0 4 0.6 6.7c.3 1.5 1.5 2.7 3 3.1 2.7.7 10.9.7 10.9.7s8.2 0 10.9-.7c1.5-.4 2.7-1.6 3-3.1.6-2.7.6-6.7.6-6.7s0-4-.6-6.7zM14 22.1V12.9l8.1 4.6-8.1 4.6z"></path>
-            </svg>
-          </a>
-          <a class="social" href="https://www.instagram.com/robinmmusic" aria-label="Instagram" target="_self">
-            <svg viewBox="0 0 35 35" aria-hidden="true">
-              <path d="M10.2 3h14.6A7.2 7.2 0 0 1 32 10.2v14.6a7.2 7.2 0 0 1-7.2 7.2H10.2A7.2 7.2 0 0 1 3 24.8V10.2A7.2 7.2 0 0 1 10.2 3zm0 2.6A4.6 4.6 0 0 0 5.6 10.2v14.6a4.6 4.6 0 0 0 4.6 4.6h14.6a4.6 4.6 0 0 0 4.6-4.6V10.2a4.6 4.6 0 0 0-4.6-4.6H10.2zm15.4 1.9a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4zm-8.1 2.1a7.9 7.9 0 1 1 0 15.8 7.9 7.9 0 0 1 0-15.8zm0 2.6a5.3 5.3 0 1 0 0 10.6 5.3 5.3 0 0 0 0-10.6z"></path>
-            </svg>
-          </a>
-          <a class="social" href="mailto:Methe@pittbuhl.com" aria-label="Email" target="_self">
-            <svg viewBox="0 0 35 35" aria-hidden="true">
-              <path d="M5 8.5h25c1.1 0 2 .9 2 2V25c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V10.5c0-1.1.9-2 2-2zm0 2.7v.4l12.5 8.8 12.5-8.8v-.4H5zm25 13.1V14.8l-11.8 8.3a1.4 1.4 0 0 1-1.6 0L5 14.8v9.5h25z"></path>
-            </svg>
-          </a>
-        </nav>
       </header>
 
-      <main class="hero-wrap">
-        <div class="hero-stack">
-          <section class="hero" aria-label="Homepage image">
-            <img src="images/RobinM-AmorosoFilms026.JPG" alt="Robin M" />
-          </section>
-          <a class="signup" href="https://stats.sender.net/forms/bqxE2y/view" target="_blank" rel="noreferrer">SIGN UP</a>
+      <main class="hero" aria-label="Robin M landing page">
+        <div class="hero-card">
+          <div class="hero-meta"></div>
         </div>
       </main>
 
       <footer class="footer">
-        <p>Copyright © All Rights Reserved Robin M</p>
+        <div class="footer-left">
+          <p class="footer-copy">Copyright © All Rights Reserved Robin M</p>
+        </div>
+        <div class="footer-center">
+          <a class="hero-signup footer-signup" href="https://stats.sender.net/forms/bqxE2y/view" target="_blank" rel="noopener">Sign Up</a>
+        </div>
+        <div class="footer-right">
+          <ul class="hero-socials footer-socials" aria-label="Robin M platforms">
+            <li>
+              <a class="hero-ulu-link" href="https://ulurecords.com" target="_blank" rel="noopener" aria-label="ULU Records">
+                <img src="images/ululogo.png" alt="ULU Records" />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.beatport.com/artist/robin-m/731330" aria-label="Beatport" target="_blank" rel="noopener">
+                <img src="images/beatport.png" alt="Beatport" />
+              </a>
+            </li>
+            <li>
+              <a href="https://soundcloud.com/robinmmusic" aria-label="SoundCloud" target="_blank" rel="noopener">
+                <img src="images/soundcloud-white-icon.png" alt="SoundCloud" />
+              </a>
+            </li>
+            <li>
+              <a href="https://open.spotify.com/artist/2XOzTjiQuB1TeW6JQKU3j7?si=Yd1GdSl7R7GdSPtsm3NVcQ" aria-label="Spotify" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/channel/UC9-haEDKntnUyEoW09wsRng" aria-label="YouTube" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.6 15.7V8.3l6.4 3.7-6.4 3.7z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/robinmmusic" aria-label="Instagram" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
       </footer>
     </div>
   </div>
