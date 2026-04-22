@@ -345,15 +345,27 @@
         padding: 0 clamp(1rem, 5vw, 1.35rem);
       }
 
+      .landing::before {
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.42) 28%, rgba(0,0,0,.56) 68%, rgba(0,0,0,.8) 100%),
+          radial-gradient(circle at 50% 34%, rgba(0,0,0,.04) 0%, rgba(0,0,0,.5) 72%, rgba(0,0,0,.82) 100%),
+          url('images/RobinM-AmorosoFilms021.JPG') 50% 32% / cover no-repeat;
+      }
+
       .topbar {
+        padding: .9rem 0 .55rem;
         align-items: flex-start;
-        justify-content: flex-start;
+        justify-content: center;
         gap: .75rem;
+      }
+
+      .brand {
+        width: clamp(140px, 42vw, 180px);
       }
 
       .hero {
         justify-content: center;
-        padding: clamp(2rem, 8vh, 4rem) 0 clamp(8rem, 18vh, 9rem);
+        padding: clamp(1.4rem, 5vh, 2.5rem) 0 clamp(2.4rem, 8vh, 4rem);
       }
 
       .hero-card {
@@ -363,30 +375,61 @@
 
       .hero-signup {
         font-size: .92rem;
-      }
-
-      .footer-socials a {
-        width: 24px;
-        height: 24px;
-      }
-
-      .footer-socials .hero-ulu-link {
-        width: 26px;
-        height: 26px;
+        padding: .2rem 0 .55rem;
       }
 
       .footer {
-        padding: 1rem 0 1.2rem;
-        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: .8rem 0 1rem;
+        gap: .85rem;
+        grid-template-columns: none;
+      }
+
+      .footer-left,
+      .footer-center,
+      .footer-right {
+        justify-self: auto;
+      }
+
+      .footer-left {
+        order: 2;
+      }
+
+      .footer-center {
+        order: 1;
+      }
+
+      .footer-right {
+        order: 3;
+      }
+
+      .footer-signup {
+        text-align: center;
+        padding: .2rem 0 .55rem;
       }
 
       .footer-copy {
         font-size: .62rem;
         letter-spacing: .2em;
+        text-align: center;
       }
 
-      .footer-socials{
-        gap:.9rem;
+      .footer-socials {
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .footer-socials a {
+        width: 23px;
+        height: 23px;
+      }
+
+      .footer-socials .hero-ulu-link {
+        width: 24px;
+        height: 24px;
       }
     }
   </style>
